@@ -1,0 +1,153 @@
+<script setup>
+    // import
+    import { ref } from 'vue';
+    
+    //variable
+    const travel = ref("");
+    const money = ref(0);
+    const travelList=ref([
+      {name: 'สุนทรารมณ์',  price:80, size:{s:80, m:150, l:200}, img:"/img/1.jfif"}, 
+      {name:'Overnight',  price:150, size:{s:150, m:200, l:300}, img:"/img/2.jfif"},
+      {name:'Tamma',      price:199, size:{s:199, m:249, l:359}, img:"/img/3.jfif"},
+      {name:'ไปญาล',     price:100, size:{s:100, m:150, l:210}, img:"/img/4.jfif"},
+      {name:'Beerlab',    price:99, size:{s:99, m:146, l:219}, img:"/img/5.jfif"},
+    ])
+    
+    
+    //เก็บ list การจอง 
+    const list_local = ref([
+    
+     
+    ]);
+    
+    //function
+    function list_local_control(name) {
+      const item = {
+        name: name,
+      };
+    
+      list_local.value.push(item);
+    }
+    </script>
+    
+    
+    
+    <template>
+    
+      <div class="container text-center">
+        <div class="row">
+          <div class="col" v-for="(i,index) in travelList" :key="index">
+            <div class="card" style="width: 18rem;" >
+              <img :src="i.img" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{ i.name }}</h5>
+                <p>Size s ={{i.size.s}}</p>
+                <p>Size m ={{i.size.m}}</p>
+                <p>Size l ={{i.size.l}}</p>
+                <p class="card-text">จำนวนโต๊ะ 
+                   <input type="number">
+                </p>
+                <a class="btn btn-primary" @click="list_local_control(i.name)">จองโต๊ะ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    
+      <hr>
+      <h1 style="text-align: center;">รายการจองโต๊ะ</h1>
+      <div class="List_cout">
+        <table class="table table-hover">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ลำดับ</th>
+                <th scope="col">ชื่อร้าน</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(i,index) in list_local" :key="index" v-if="list_local.length>0">
+                <th scope="row">{{index+1}}</th>
+                <td>{{ i.name }}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </table>
+    
+    
+        ชื่อคนจอง
+        เบอร์โทร
+        วันที่
+        เวลา
+    
+      </div>
+    
+    
+    
+    <!--
+      <div>
+        <div v-for="(i,index) in travelList" :key="index">
+        {{index+1}}
+    
+          ชื่อ  {{ i.name }} ราคา {{ i.price }}  <br>
+          size S = {{ i.size.s }}
+          size M = {{ i.size.m }}
+          size L = {{ i.size.l }}
+          <br>
+          รูป
+          แผนที่
+        </div>
+    
+    
+        <h1> Hello Petter </h1>
+        <input type="radio" value="a" v-model="travel" />ป่า
+        <input type="radio" value="b" v-model="travel" />ทะเล
+        <input type="radio" value="c" v-model="travel" />ภูเขา
+        <br>
+    
+       
+    
+      </div>
+    
+      <div v-if="travel==='a'"><img src="/img/forest.jfif" alt=""></div>
+      <div v-else-if="travel==='b'"><img src="/img/sea.jpg" alt=""></div>
+      <div v-else-if="travel==='c'"><img src="/img/hil.jfif" alt=""></div>
+        
+      <input type="number" v-model="money" />
+    
+      <p v-if="money  <100"> ไป๊ นอนอยู่บ้าน </p>
+      <p v-else-if="money >=100 && money <1000000000"> แป๊ะเที่ยวยาวๆ </p>
+      <p v-else>โครตรวยครับพี่ </p>
+    
+    
+      <button @click="money" :disabled="money <50"> เดินทางได้ </button>
+      <p v-if="money <=50">ไอ้จนเดินทางไม่ได้</p>
+      <p v-else>เดินทางได้</p>
+    -->
+    
+    </template>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <style>
+    *{
+      padding: 5px;
+    }
+    .card-img-top{
+      height: 10rem;
+      width: 10rem;
+    
+    }
+    
+    
+    
+    
+    
+    </style>
